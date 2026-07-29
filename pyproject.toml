@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "formal-proof-mcp"
+version = "0.1.0"
+description = "MCP server giving a coding agent a proof kernel, an axiom audit, and an honest 'I could not check that'"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "Apache-2.0" }
+keywords = ["mcp", "lean", "formal-methods", "verification", "agents", "proof"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = []          # the MCP transport is JSON-RPC over stdio; no SDK needed
+
+[project.optional-dependencies]
+# Every delegating tool reports `unavailable` when its package is absent -- never a pass.
+siblings = ["signoff-cert", "kvleak"]
+portfolio = ["preregister", "floorgen", "gatecount", "evidence"]
+all = ["signoff-cert", "kvleak", "preregister", "floorgen", "gatecount", "evidence"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+formal-proof-mcp = "formal_proof_mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.cold_install]
+smoke = ["--selftest"]
