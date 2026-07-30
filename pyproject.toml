@@ -22,8 +22,12 @@ dependencies = []          # the MCP transport is JSON-RPC over stdio; no SDK ne
 [project.optional-dependencies]
 # Every delegating tool reports `unavailable` when its package is absent -- never a pass.
 siblings = ["signoff-cert", "kvleak"]
-portfolio = ["preregister", "floorgen", "gatecount", "evidence"]
-all = ["signoff-cert", "kvleak", "preregister", "floorgen", "gatecount", "evidence"]
+# NOTE: `evidence` and `gridlock` on PyPI are UNRELATED third-party projects. Our
+# distributions are `evidence-runner` and `gridlock-certify` (the import names are
+# unchanged). Naming the bare forms here would pull a stranger's package in as a
+# dependency of ours, where nobody would think to look for it.
+portfolio = ["preregister", "floorgen", "gatecount", "evidence-runner"]
+all = ["signoff-cert", "kvleak", "preregister", "floorgen", "gatecount", "evidence-runner"]
 dev = ["pytest>=7"]
 
 [project.scripts]

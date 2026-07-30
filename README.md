@@ -12,9 +12,13 @@ them:
 
 > **A result that was not checked is never returned as a result that passed.**
 
+**Not yet on PyPI.** The command below is the one that works today. It installs from this repository, pinned to a tag.
+
 ```bash
-pip install formal-proof-mcp
+pip install "git+https://github.com/nickharris808/formal-proof-mcp@v0.1.0"
 ```
+
+`pip install formal-proof-mcp` is the intended command once the name is published. **It 404s today**, which is why it is not the first step above. The tag is pinned rather than `@main` so a reader installs the exact code this README documents.
 
 ## Why this exists
 
@@ -61,6 +65,13 @@ Note line 3. An axiom audit over *empty input* **fails**. A coverage tool that c
 anything must never pass quietly — that is how an entire corpus goes unaudited while CI stays green.
 
 ## Install
+
+> **Not yet on PyPI.** `pip install formal-proof-mcp` is the intended install once published;
+> until then install from the repository — it works exactly the same:
+>
+> ```
+> pip install git+https://github.com/nickharris808/formal-proof-mcp@main
+> ```
 
 ```bash
 pip install formal-proof-mcp                 # zero dependencies
@@ -109,6 +120,13 @@ produce it. There is a test that blocks the import and asserts the status.
 | `state_floor` | how many states must the system distinguish? | `floorgen` |
 | `gate_count` | exactly how many states does removing this check admit? | `gatecount` |
 | `evidence_audit` | run every applicable verifier over a tree, aggregate to one verdict | `evidence` |
+
+> **Not yet on PyPI.** `pip install formal-proof-mcp` is the intended install once published;
+> until then install from the repository — it works exactly the same:
+>
+> ```
+> pip install git+https://github.com/nickharris808/formal-proof-mcp@main
+> ```
 
 ```bash
 pip install "formal-proof-mcp[portfolio]"     # the server plus all four
