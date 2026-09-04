@@ -20,14 +20,23 @@ classifiers = [
 dependencies = []          # the MCP transport is JSON-RPC over stdio; no SDK needed
 
 [project.optional-dependencies]
-# Every delegating tool reports `unavailable` when its package is absent -- never a pass.
-siblings = ["signoff-cert", "kvleak"]
 # NOTE: `evidence` and `gridlock` on PyPI are UNRELATED third-party projects. Our
 # distributions are `evidence-runner` and `gridlock-certify` (the import names are
 # unchanged). Naming the bare forms here would pull a stranger's package in as a
 # dependency of ours, where nobody would think to look for it.
-portfolio = ["preregister", "floorgen", "gatecount", "evidence-runner"]
-all = ["signoff-cert", "kvleak", "preregister", "floorgen", "gatecount", "evidence-runner"]
+#
+# `siblings` and `portfolio` named signoff-cert, kvleak, preregister, floorgen and
+# gatecount. None of those is on PyPI, so every one of those extras exited 1 on a
+# resolver error. An extra that cannot resolve is an install command we shipped
+# knowing it would fail -- the exact shape this server exists to catch.
+#
+# `evidence-runner` is the portfolio distribution that is on PyPI, so it is the one
+# an extra can honestly promise. The rest install from a pinned git tag; the README's
+# "Delegating tools" section lists the commands. Every delegating tool reports
+# `unavailable` when its package is absent -- never a pass -- so the server is fully
+# honest with none of them installed.
+portfolio = ["evidence-runner"]
+all = ["evidence-runner"]
 dev = ["pytest>=7"]
 
 [project.scripts]

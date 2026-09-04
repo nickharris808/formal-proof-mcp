@@ -263,7 +263,7 @@ def cert_verify(cert: Dict[str, Any], *, hmac_key: Optional[str] = None,
     try:
         from signoff_cert import verify_certificate
     except ImportError:
-        return _unavailable("the `signoff-cert` package", "pip install signoff-cert")
+        return _unavailable("the `signoff-cert` package", "pip install \"signoff-cert @ git+https://github.com/nickharris808/signoff-cert@v1.0.1\"")
     r = verify_certificate(cert, hmac_key=hmac_key.encode() if hmac_key else None,
                            require_authentication=not allow_unauthenticated)
     d = r.as_dict()
@@ -278,7 +278,7 @@ def residency_check(model: str, n_prefixes: int, tokens_each: int,
         from kvleak import check_residency
         from kvleak.cli import KNOWN
     except ImportError:
-        return _unavailable("the `kvleak` package", "pip install kvleak")
+        return _unavailable("the `kvleak` package", "pip install \"kvleak @ git+https://github.com/nickharris808/kvleak@v0.1.0\"")
     key = model.lower()
     if key not in KNOWN:
         return {"status": "failed", "error": f"unknown model {model!r}",
@@ -313,7 +313,7 @@ def prereg_check(decision_rule: str, metrics: Dict[str, Any]) -> Dict[str, Any]:
     try:
         from preregister import Support, analyse
     except ImportError:
-        return _unavailable("preregister", "pip install preregister")
+        return _unavailable("preregister", "pip install \"preregister @ git+https://github.com/nickharris808/preregister@v0.1.0\"")
     if not isinstance(metrics, dict) or not metrics:
         return {"status": "failed",
                 "error": "metrics must be a non-empty object mapping each metric to its support, "
@@ -340,7 +340,7 @@ def state_floor(variables: Dict[str, List[Any]], answers: List[Dict[str, Any]],
         from floorgen import Spec, impossibility
         from floorgen import state_floor as _floor
     except ImportError:
-        return _unavailable("floorgen", "pip install floorgen")
+        return _unavailable("floorgen", "pip install \"floorgen @ git+https://github.com/nickharris808/floorgen@v0.1.0\"")
     if not isinstance(variables, dict) or not variables:
         return {"status": "failed", "error": "variables must be a non-empty object mapping each "
                                              "name to its finite domain"}
@@ -396,7 +396,7 @@ def count_check_removal(domain: Dict[str, Any], policy: str, weakened: str) -> D
     try:
         from gatecount import Domain, over_accepting
     except ImportError:
-        return _unavailable("gatecount", "pip install gatecount")
+        return _unavailable("gatecount", "pip install \"gatecount @ git+https://github.com/nickharris808/gatecount@v0.1.0\"")
     try:
         d = Domain.from_dict(domain)
         r = over_accepting(d, str(policy), str(weakened))
@@ -423,7 +423,7 @@ def evidence_audit(path: str = ".") -> Dict[str, Any]:
     try:
         from evidence import audit
     except ImportError:
-        return _unavailable("evidence", "pip install \"evidence[all]\"")
+        return _unavailable("evidence", "pip install evidence-runner")
     if not os.path.isdir(path):
         return {"status": "failed", "error": f"{path!r} is not a directory"}
     try:
