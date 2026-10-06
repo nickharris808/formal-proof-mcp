@@ -6,7 +6,7 @@ Every response carries `status` in {ok, failed, unavailable}, and `unavailable` 
 from both — an agent that reads a missing toolchain as "no errors found" will assert a proof it
 never checked.
 
-CLEAN: exposes a toolchain and reports. Implements no filed apparatus.
+CLEAN: exposes a toolchain and reports. Implements no claimed apparatus.
 """
 from __future__ import annotations
 

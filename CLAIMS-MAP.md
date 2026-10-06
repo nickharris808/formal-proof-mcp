@@ -6,7 +6,7 @@ This file exists so the CLEAN tag is *auditable* rather than asserted.
 
 ## The line
 
-Every method independent in the filed set terminates in a **physical actuation** step. The two
+Every method independent in the drafted set terminates in a **physical actuation** step. The two
 families nearest this server recite:
 
 > *"…recording the recomputed root value … and **refusing to admit a gate decision** in reliance
@@ -20,7 +20,7 @@ a bound, walks a graph. It admits nothing into an executing path and refuses no 
 
 ## Claims approached, and the step not performed
 
-| Filed claim family | What it recites | What formal-proof-mcp does instead |
+| Drafted claim family | What it recites | What formal-proof-mcp does instead |
 |---|---|---|
 | Evidence-backed admission gating | maintaining an evidence set backing an admission gate, recomputing over it, and **refusing to admit a gate decision** in reliance on it | Recomputes and returns JSON. `isError` is an MCP reporting field; nothing is admitted or refused. |
 | Acceptance-procedure qualification | recording false-acceptance counts and **admitting a subject implementation into an executing path** using a qualified procedure | `bound` reports what a k-of-n record supports. No subject, no executing path. |
